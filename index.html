@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="theme-color" content="#0d0f14">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<title>Voice Changer</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<main>
+  <header>
+    <h1>Voice Changer</h1>
+    <span id="status" class="badge">停止中</span>
+  </header>
+
+  <p class="warn">🎧 <b>必ずイヤホンを使用してください。</b>スピーカー出力だと音が回り込み、ハウリングします。</p>
+  <p id="error" class="error" hidden></p>
+
+  <section class="card">
+    <div class="row"><h2>入力レベル</h2><span id="dbVal" class="val">-∞ dB</span></div>
+    <div class="meter"><div id="meterFill"></div><div id="meterPeak"></div></div>
+    <label class="check"><input type="checkbox" id="phones"> イヤホンを接続しました</label>
+    <button id="startBtn" class="primary" disabled>開始</button>
+  </section>
+
+  <section class="card">
+    <div class="row"><h2>ピッチ</h2><span id="pitchVal" class="val">0.0 半音</span></div>
+    <input type="range" id="pitch" min="-12" max="12" step="0.1" value="0">
+    <div class="scale"><span>-12</span><span>0</span><span>+12</span></div>
+  </section>
+
+  <section class="card">
+    <div class="row"><h2>フォルマント</h2><span id="formantVal" class="val">0.0</span></div>
+    <input type="range" id="formant" min="-6" max="6" step="0.1" value="0">
+    <div class="scale"><span>-6 (太く)</span><span>0</span><span>+6 (細く)</span></div>
+  </section>
+
+  <section class="card">
+    <div class="row">
+      <h2>モニター</h2>
+      <label class="switch"><input type="checkbox" id="monitor" checked><span></span></label>
+    </div>
+    <div class="row small"><span>推定遅延</span><span id="latency" class="val">--</span></div>
+    <button id="resetBtn" class="ghost">設定をリセット</button>
+  </section>
+
+  <p class="note">音声は端末内でのみ処理され、外部へは送信されません。モニターOFF中は音声処理を止めます。</p>
+</main>
+<script type="module" src="js/app.js"></script>
+</body>
+</html>
