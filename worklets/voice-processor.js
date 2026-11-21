@@ -157,7 +157,7 @@ class VoiceProcessor extends AudioWorkletProcessor {
     fft.transform(re, im, false);                      // → 平滑化 log 包絡
     for (let k = 0; k <= HALF; k++) {
       logEnv[k] = re[k];
-      flat[k] = (mag[k] + floor) / Math.exp(re[k]);              // 励振(声帯)成分
+      flat[k] = mag[k] / Math.exp(re[k]);              // 励振(声帯)成分
     }
 
     // 4) ピーク検出と領域割り当て (位相ロック用)
